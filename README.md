@@ -9,6 +9,13 @@ To get started Run the comman below.
 After downloading the app, Run `npm i` or `npm install` to install all dependencies. Then,
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+See images below:
+![Screenshot 2025-01-09 at 5 39 54 PM](https://github.com/user-attachments/assets/1366fe0d-4b31-4819-916c-e350acae3705)
+![Screenshot 2025-01-09 at 5 42 58 PM](https://github.com/user-attachments/assets/a0998fdb-af35-4338-a16f-b3961204b9b1)
+
+<img width="885" alt="running app" src="https://github.com/user-attachments/assets/407c2a58-e6ae-41fa-8d4a-8c07b6063e51" />
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
