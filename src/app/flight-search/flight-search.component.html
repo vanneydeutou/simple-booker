@@ -1,0 +1,50 @@
+<!-- aes-assessment/simple-booker/src/app/flight-search/flight-search.component.html -->
+<form [formGroup]="flightForm" (ngSubmit)="onSubmit()" class="flight-search-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Departure City</mat-label>
+    <mat-select formControlName="departureCity">
+      <mat-option *ngFor="let city of (cities$ | async)" [value]="city.value">{{ city.name }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="flightForm.get('departureCity')?.hasError('required')">
+      Departure City is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Destination City</mat-label>
+    <mat-select formControlName="destinationCity">
+      <mat-option *ngFor="let city of (cities$ | async)" [value]="city.value">{{ city.name }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="flightForm.get('destinationCity')?.hasError('required')">
+      Destination City is required
+    </mat-error>
+    <mat-error *ngIf="flightForm.hasError('citiesAreSame')">
+      Departure and Destination cities cannot be the same.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Depart Date</mat-label>
+    <input matInput [matDatepicker]="picker1" formControlName="departDate" [min]="minDepartDate">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+    <mat-error *ngIf="flightForm.get('departDate')?.hasError('required')">
+      Depart Date is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Return Date</mat-label>
+    <input matInput [matDatepicker]="picker2" formControlName="returnDate" [min]="flightForm.get('departDate')?.value">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+    <mat-error *ngIf="flightForm.get('returnDate')?.hasError('required')">
+      Return Date is required
+    </mat-error>
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="secondary" (click)="swapCities()" [disabled]="!canSwapCities()">Swap Cities</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="flightForm.invalid">Submit</button>
+  </div>
+</form>
